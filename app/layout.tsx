@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 import { Geist_Mono, Inter } from "next/font/google";
 import Footer from "@/components/Footer";
+import FloatingCTA from "@/components/FloatingCTA";
 import LenisProvider from "@/components/lenis-provider";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
@@ -19,31 +20,49 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Integral Solutions",
-  description: "Modern Next.js 14 starter with Tailwind, shadcn/ui, theming, and smooth scrolling.",
+  metadataBase: new URL("https://integralsolutionsinc.ca"),
+  title: {
+    default: "Integral Solutions Inc. | Engineering • Reliability • Integrity",
+    template: "%s | Integral Solutions Inc.",
+  },
+  description:
+    "Integral Solutions Inc. provides engineering consulting, plant reliability services, fixed equipment integrity management, and asset management solutions across North America.",
   keywords: [
-    "Next.js 14",
-    "TailwindCSS",
-    "shadcn/ui",
-    "lenis",
-    "framer-motion",
-    "next-themes",
+    "engineering consulting",
+    "asset management",
+    "plant reliability",
+    "RBI",
+    "pressure equipment integrity",
+    "RCM",
+    "maintenance optimization",
+    "industrial engineering",
+    "pipeline integrity",
   ],
   openGraph: {
-    title: "Integral Solutions",
-    description: "Modern Next.js 14 starter with Tailwind, shadcn/ui, theming, and smooth scrolling.",
-    url: "https://example.com",
-    siteName: "Integral Solutions",
-    locale: "en_US",
     type: "website",
+    url: "https://integralsolutionsinc.ca",
+    title: "Integral Solutions Inc. | Engineering • Reliability • Integrity",
+    description:
+      "Supporting industrial facilities across North America with engineering expertise in reliability, integrity, maintenance, and asset management.",
+    siteName: "Integral Solutions Inc.",
     images: [
       {
-        url: "/images/og-default.png",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Integral Solutions preview",
+        alt: "Integral Solutions Inc.",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Integral Solutions Inc.",
+    description: "Engineering, reliability, maintenance, and integrity expertise.",
+    images: ["/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -77,6 +96,7 @@ export default function RootLayout({
             </main>
             <Footer />
           </div>
+          <FloatingCTA />
         </ThemeProvider>
       </body>
     </html>

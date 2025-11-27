@@ -9,14 +9,14 @@ import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  "Home",
-  "About Us",
-  "Services",
-  "Industries",
-  "Projects",
-  "Blog",
-  "Careers",
-  "Contact",
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Industries", href: "/industries" },
+  { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
+  { label: "Careers", href: "/careers" },
+  { label: "Contact", href: "/contact" },
 ];
 
 function ModeToggle() {
@@ -66,10 +66,10 @@ export default function Navbar() {
         </motion.div>
 
         <nav className="hidden items-center gap-8 text-sm font-medium uppercase tracking-wide text-white/80 md:flex">
-          {navLinks.map((label) => (
+          {navLinks.map(({ label, href }) => (
             <Link
               key={label}
-              href="#"
+              href={href}
               className="relative pb-1 transition-colors hover:text-white"
             >
               <span
@@ -109,10 +109,10 @@ export default function Navbar() {
           >
             <div className="w-full border-t border-white/10 bg-black/60 px-6 py-4 backdrop-blur-xl dark:border-white/5">
               <div className="flex flex-col gap-3 text-sm font-semibold uppercase tracking-wide text-white/80">
-                {navLinks.map((label) => (
+                {navLinks.map(({ label, href }) => (
                   <Link
                     key={label}
-                    href="#"
+                    href={href}
                     className="relative rounded-lg px-2 py-2 transition hover:text-white"
                     onClick={() => setOpen(false)}
                   >

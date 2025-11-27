@@ -58,7 +58,14 @@ export default function Hero() {
                 className="relative rounded-2xl border border-cyan-500/30 bg-white/5 p-6 shadow-2xl backdrop-blur-xl dark:bg-white/10"
               >
                 <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),transparent_50%)]" />
-                <div className="absolute inset-0 rounded-2xl bg-[url('/images/blueprint-grid.png')] opacity-10" />
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-10"
+                  style={{
+                    backgroundSize: "32px 32px",
+                    backgroundImage:
+                      "linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px)",
+                  }}
+                />
                 <div className="relative space-y-4">
                   <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
                     Reliability • Integrity • Compliance
