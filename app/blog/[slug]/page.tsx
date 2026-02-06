@@ -1,59 +1,33 @@
-"use client";
-
-import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import BlogPostPageClient from "./BlogPostPageClient";
 import { posts } from "@/lib/posts";
 
-export default function BlogPostPage() {
-  const { slug } = useParams<{ slug: string }>();
-  const router = useRouter();
-  const post = posts.find((item) => item.slug === slug);
+type BlogPostPageProps = {
+  params: { slug: string };
+};
+
+export function generateMetadata({ params }: BlogPostPageProps): Metadata {
+  const post = posts.find((p) => p.slug === params.slug);
 
   if (!post) {
-    router.replace("/blog");
-    return null;
+    return {
+      title: "Article Not Found",
+    };
   }
 
-  return (
-    <div className="flex flex-col bg-gradient-to-b from-[#050816] via-[#060b1d] to-[#050816] pb-20 pt-12">
-      <motion.section
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto max-w-7xl px-6 py-12"
-      >
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 text-center shadow-2xl backdrop-blur">
-          <div className="absolute inset-0 opacity-25">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,_rgba(56,189,248,0.08)_1px,_transparent_0)] bg-[length:22px_22px]" />
-          </div>
-          <div className="relative space-y-3">
-            <h1 className="text-4xl font-bold text-white md:text-5xl">{post.title}</h1>
-            <p className="text-gray-300">Published: Feb 2025</p>
-          </div>
-        </div>
-      </motion.section>
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
 
-      <motion.section
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
-        className="mx-auto max-w-7xl px-6 py-6"
-      >
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
-          <div className="prose prose-invert max-w-3xl text-gray-100">
-            <p>{post.content}</p>
-          </div>
-          <div className="mt-6">
-            <Link
-              href="/blog"
-              className="text-sm font-semibold text-cyan-200 transition hover:text-white"
-            >
-              ← Back to Blog
-            </Link>
-          </div>
-        </div>
-      </motion.section>
-    </div>
-  );
+export default function BlogPostPage({ params }: BlogPostPageProps) {
+  const post = posts.find((item) => item.slug === params.slug);
+
+  if (!post) {
+    return notFound();
+  }
+
+  return <BlogPostPageClient post={post} />;
 }
