@@ -4,11 +4,12 @@ import BlogPostPageClient from "./BlogPostPageClient";
 import { articles } from "../data/articles";
 
 type BlogPostPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export function generateMetadata({ params }: BlogPostPageProps): Metadata {
-  const article = articles.find((a) => a.id === parseInt(params.slug));
+export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const article = articles.find((a) => a.id === parseInt(slug));
 
   if (!article) {
     return {
@@ -22,8 +23,9 @@ export function generateMetadata({ params }: BlogPostPageProps): Metadata {
   };
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const article = articles.find((a) => a.id === parseInt(params.slug));
+export default async function BlogPostPage({ params }: BlogPostPageProps) {
+  const { slug } = await params;
+  const article = articles.find((a) => a.id === parseInt(slug));
 
   if (!article) {
     return notFound();
