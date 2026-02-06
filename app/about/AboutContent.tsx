@@ -45,7 +45,7 @@ const values = [
   },
 ];
 
-import { Briefcase, Clock, Users, Heart } from "lucide-react";
+import { Briefcase, Clock, Heart } from "lucide-react";
 
 const stats = [
   { 
