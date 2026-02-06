@@ -1,33 +1,33 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogPostPageClient from "./BlogPostPageClient";
-import { posts } from "@/lib/posts";
+import { articles } from "../data/articles";
 
 type BlogPostPageProps = {
   params: { slug: string };
 };
 
 export function generateMetadata({ params }: BlogPostPageProps): Metadata {
-  const post = posts.find((p) => p.slug === params.slug);
+  const article = articles.find((a) => a.id === parseInt(params.slug));
 
-  if (!post) {
+  if (!article) {
     return {
       title: "Article Not Found",
     };
   }
 
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: `${article.title} | Integral Solutions Inc.`,
+    description: article.excerpt,
   };
 }
 
 export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = posts.find((item) => item.slug === params.slug);
+  const article = articles.find((a) => a.id === parseInt(params.slug));
 
-  if (!post) {
+  if (!article) {
     return notFound();
   }
 
-  return <BlogPostPageClient post={post} />;
+  return <BlogPostPageClient article={article} />;
 }

@@ -15,7 +15,7 @@ const projects = [
     description:
       "Comprehensive reliability program implementation across 12 critical gas processing assets, including RCM analysis, vibration monitoring systems, and operator-driven reliability initiatives.",
     image:
-      "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80",
     results: [
       "35% reduction in unplanned downtime",
       "$2.5M annual maintenance cost savings",
@@ -53,7 +53,7 @@ const projects = [
     description:
       "Complete redesign of maintenance strategy using RCM principles for 500+ rotating equipment assets, including criticality analysis and spare parts optimization.",
     image:
-      "https://images.unsplash.com/photo-1487875961445-47a3c75fc5d0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?auto=format&fit=crop&w=1200&q=80",
     results: [
       "50% reduction in repeat failures",
       "60% improvement in MTBF",

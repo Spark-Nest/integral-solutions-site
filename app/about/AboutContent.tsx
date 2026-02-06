@@ -4,26 +4,44 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
+import { Target, Lightbulb, Users, Award } from "lucide-react";
+
 const values = [
   {
     title: "Excellence",
     description:
       "We strive for excellence in every project, setting high standards to consistently deliver results that surpass expectations and drive operational success.",
+    icon: Target,
+    color: "from-cyan-400 to-blue-500",
+    shadowColor: "shadow-cyan-500/20",
+    glowColor: "bg-cyan-500/20",
   },
   {
     title: "Innovation",
     description:
       "Unleashing creativity and embracing the latest technologies, our commitment to innovation ensures cutting-edge solutions for your evolving needs.",
+    icon: Lightbulb,
+    color: "from-purple-400 to-pink-500",
+    shadowColor: "shadow-purple-500/20",
+    glowColor: "bg-purple-500/20",
   },
   {
     title: "Collaboration",
     description:
       "Fostering close collaboration with our technical partners and specialized solutions providers, we offer a holistic approach to plant reliability and engineering consulting.",
+    icon: Users,
+    color: "from-emerald-400 to-teal-500",
+    shadowColor: "shadow-emerald-500/20",
+    glowColor: "bg-emerald-500/20",
   },
   {
     title: "Expertise",
     description:
       "Backed by a team of seasoned professionals, our commitment to expertise brings a wealth of experience and technical prowess to every project.",
+    icon: Award,
+    color: "from-amber-400 to-orange-500",
+    shadowColor: "shadow-amber-500/20",
+    glowColor: "bg-amber-500/20",
   },
 ];
 
@@ -180,7 +198,7 @@ export default function AboutContent() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
                   alt="Team collaboration"
                   fill
                   className="object-cover"
@@ -216,21 +234,70 @@ export default function AboutContent() {
             {values.map((value, index) => (
               <motion.div
                 key={value.title}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="p-8 rounded-2xl border border-white/10 bg-white/[0.02]"
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+                whileHover={{ 
+                  y: -12,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className="group relative"
               >
-                <h3
-                  className="text-xl font-bold text-white mb-3"
-                  style={{ fontFamily: "var(--font-montserrat)" }}
-                >
-                  {value.title}
-                </h3>
-                <p className="text-gray-400 leading-relaxed">
-                  {value.description}
-                </p>
+                {/* Floating shadow layer */}
+                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
+                
+                {/* Glow orb behind icon */}
+                <div className={`absolute -top-4 -right-4 w-24 h-24 rounded-full ${value.glowColor} blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                
+                {/* Main card */}
+                <div className={`relative h-full p-8 rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-500 group-hover:border-white/20 group-hover:shadow-2xl ${value.shadowColor}`}>
+                  {/* Gradient overlay on hover */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${value.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                  
+                  {/* Top gradient line */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${value.color} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                  
+                  {/* Icon container with floating animation */}
+                  <motion.div
+                    className="relative mb-6"
+                    animate={{ y: [0, -6, 0] }}
+                    transition={{ 
+                      duration: 3 + index * 0.5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: index * 0.2
+                    }}
+                  >
+                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br ${value.color} shadow-lg ${value.shadowColor}`}>
+                      <value.icon className="w-8 h-8 text-white" strokeWidth={2} />
+                    </div>
+                    
+                    {/* Pulse ring */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${value.color} opacity-20 animate-ping`} style={{ animationDuration: '3s' }} />
+                  </motion.div>
+                  
+                  {/* Content */}
+                  <div className="relative">
+                    <h3
+                      className="text-2xl font-bold text-white mb-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r transition-all duration-300"
+                      style={{ 
+                        fontFamily: "var(--font-montserrat)",
+                      }}
+                    >
+                      <span className={`bg-gradient-to-r ${value.color} bg-clip-text text-transparent`}>
+                        {value.title}
+                      </span>
+                    </h3>
+                    
+                    <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">
+                      {value.description}
+                    </p>
+                  </div>
+                  
+                  {/* Bottom decoration */}
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-white/5 to-transparent rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
               </motion.div>
             ))}
           </div>

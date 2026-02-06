@@ -26,19 +26,25 @@ export default function Navbar() {
   return (
     <>
       {/* Top bar */}
-      <div className="bg-[#0a0f1e] border-b border-white/5">
+      <div className="bg-gradient-to-r from-[#05101f] via-[#061326] to-[#05101f] border-b border-cyan-500/10">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-center justify-end gap-8 py-2.5 text-sm text-gray-400">
             <a
               href="mailto:info@integralsolutionsinc.ca"
-              className="hover:text-blue-400 transition"
+              className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
             >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
               info@integralsolutionsinc.ca
             </a>
             <a
               href="tel:+14034023670"
-              className="hover:text-blue-400 transition"
+              className="flex items-center gap-2 hover:text-cyan-400 transition-colors"
             >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+              </svg>
               +1 (403) 402-3670
             </a>
           </div>
