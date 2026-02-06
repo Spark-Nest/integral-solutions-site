@@ -126,11 +126,41 @@ const projects = [
   },
 ];
 
+import { Briefcase, PiggyBank, TrendingDown, Calendar } from "lucide-react";
+
 const stats = [
-  { value: "250+", label: "Projects Completed" },
-  { value: "$50M+", label: "Client Savings" },
-  { value: "40-60%", label: "Avg. Failure Reduction" },
-  { value: "15+", label: "Years Experience" },
+  { 
+    value: "250+", 
+    label: "Projects Completed",
+    icon: Briefcase,
+    gradient: "from-cyan-400 to-blue-500",
+    glowColor: "cyan",
+    description: "Across North America"
+  },
+  { 
+    value: "$50M+", 
+    label: "Client Savings",
+    icon: PiggyBank,
+    gradient: "from-emerald-400 to-green-500",
+    glowColor: "emerald",
+    description: "In operational costs"
+  },
+  { 
+    value: "40-60%", 
+    label: "Failure Reduction",
+    icon: TrendingDown,
+    gradient: "from-violet-400 to-purple-500",
+    glowColor: "violet",
+    description: "Repeat failure elimination"
+  },
+  { 
+    value: "15+", 
+    label: "Years Experience",
+    icon: Calendar,
+    gradient: "from-amber-400 to-orange-500",
+    glowColor: "amber",
+    description: "Industry expertise"
+  },
 ];
 
 export default function ProjectsPageClient() {
@@ -172,27 +202,69 @@ export default function ProjectsPageClient() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 border-y border-white/5">
+      <section className="py-20 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <div className="mx-auto max-w-7xl px-6">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6"
           >
-            {stats.map((stat) => (
-              <div
+            {stats.map((stat, index) => (
+              <motion.div
                 key={stat.label}
-                className="text-center p-6 rounded-xl bg-white/5 border border-white/10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ 
+                  y: -10,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className="group relative"
               >
-                <div
-                  className="text-3xl lg:text-4xl font-bold text-white mb-1"
-                  style={{ fontFamily: "var(--font-montserrat)" }}
-                >
-                  {stat.value}
+                {/* Glow effect */}
+                <div className={`absolute inset-0 rounded-2xl bg-${stat.glowColor}-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                
+                {/* Card */}
+                <div className="relative h-full p-6 rounded-2xl bg-white/[0.03] backdrop-blur-sm border border-white/10 overflow-hidden transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/[0.05] group-hover:shadow-2xl group-hover:shadow-cyan-500/10">
+                  {/* Top gradient line */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500`} />
+                  
+                  {/* Icon with floating animation */}
+                  <motion.div
+                    className="relative mb-4"
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ 
+                      duration: 3 + index * 0.5, 
+                      repeat: Infinity, 
+                      ease: "easeInOut" 
+                    }}
+                  >
+                    <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${stat.gradient} shadow-lg`}>
+                      <stat.icon className="w-6 h-6 text-white" />
+                    </div>
+                    {/* Pulse ring */}
+                    <div className={`absolute inset-0 rounded-xl bg-gradient-to-br ${stat.gradient} opacity-30 animate-ping`} style={{ animationDuration: '3s' }} />
+                  </motion.div>
+                  
+                  {/* Value with gradient text */}
+                  <div className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-2`}>
+                    {stat.value}
+                  </div>
+                  
+                  {/* Label */}
+                  <div className="text-white font-semibold mb-1">{stat.label}</div>
+                  
+                  {/* Description */}
+                  <div className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors">
+                    {stat.description}
+                  </div>
+                  
+                  {/* Corner decoration */}
+                  <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-gradient-to-tl from-white/5 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>

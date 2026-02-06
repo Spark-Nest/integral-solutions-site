@@ -45,11 +45,37 @@ const values = [
   },
 ];
 
+import { Briefcase, Clock, Users, Heart } from "lucide-react";
+
 const stats = [
-  { value: "250+", label: "Successful Projects" },
-  { value: "15+", label: "Years Experience" },
-  { value: "50+", label: "Expert Engineers" },
-  { value: "98%", label: "Client Retention" },
+  { 
+    value: "250+", 
+    label: "Successful Projects",
+    icon: Briefcase,
+    gradient: "from-cyan-400 to-blue-500",
+    description: "Delivered across North America"
+  },
+  { 
+    value: "15+", 
+    label: "Years Experience",
+    icon: Clock,
+    gradient: "from-amber-400 to-orange-500",
+    description: "Industry leadership"
+  },
+  { 
+    value: "50+", 
+    label: "Expert Engineers",
+    icon: Users,
+    gradient: "from-emerald-400 to-teal-500",
+    description: "Specialized professionals"
+  },
+  { 
+    value: "98%", 
+    label: "Client Retention",
+    icon: Heart,
+    gradient: "from-rose-400 to-pink-500",
+    description: "Long-term partnerships"
+  },
 ];
 
 const differentiators = [
@@ -126,9 +152,14 @@ export default function AboutContent() {
       </section>
 
       {/* Stats */}
-      <section className="py-16 border-y border-white/5">
+      <section className="py-20 border-y border-white/5 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -136,18 +167,68 @@ export default function AboutContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="text-center"
+                whileHover={{ 
+                  y: -12,
+                  transition: { duration: 0.3, ease: "easeOut" }
+                }}
+                className="group relative"
               >
-                <div
-                  className="text-4xl lg:text-5xl font-bold text-white mb-2"
-                  style={{ fontFamily: "var(--font-montserrat)" }}
-                >
-                  {stat.value}
+                {/* Animated glow background */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-r ${stat.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-all duration-500 scale-75 group-hover:scale-110`} />
+                
+                {/* Floating particles effect */}
+                <div className="absolute inset-0 overflow-hidden rounded-2xl">
+                  <div className="absolute top-2 right-2 w-1 h-1 bg-white/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" />
+                  <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-white/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200" />
                 </div>
-                <div className="text-gray-400">{stat.label}</div>
+                
+                {/* Card */}
+                <div className="relative h-full p-6 rounded-2xl bg-white/[0.03] backdrop-blur-sm border border-white/10 overflow-hidden transition-all duration-500 group-hover:border-white/20 group-hover:bg-white/[0.06]">
+                  {/* Shimmer effect on hover */}
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+                  
+                  {/* Top gradient line with glow */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${stat.gradient} transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 shadow-[0_0_10px_rgba(0,0,0,0.3)]`} />
+                  
+                  {/* Icon container with floating animation */}
+                  <motion.div
+                    className="relative mb-5 flex justify-center"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ 
+                      duration: 3 + index * 0.4, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      delay: index * 0.15
+                    }}
+                  >
+                    <div className={`relative inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.gradient} shadow-lg transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                      <stat.icon className="w-7 h-7 text-white" strokeWidth={2} />
+                    </div>
+                    {/* Outer ring pulse */}
+                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.gradient} opacity-20 animate-ping`} style={{ animationDuration: '3s', animationDelay: `${index * 0.2}s` }} />
+                  </motion.div>
+                  
+                  {/* Value with gradient and counter effect */}
+                  <div className={`text-4xl lg:text-5xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-2 transition-transform duration-300 group-hover:scale-105`}>
+                    {stat.value}
+                  </div>
+                  
+                  {/* Label with subtle animation */}
+                  <div className="text-white font-semibold text-lg mb-1 transition-colors duration-300 group-hover:text-white">
+                    {stat.label}
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="text-sm text-gray-500 group-hover:text-gray-400 transition-colors duration-300">
+                    {stat.description}
+                  </div>
+                  
+                  {/* Bottom corner accent */}
+                  <div className={`absolute -bottom-6 -right-6 w-20 h-20 bg-gradient-to-tl ${stat.gradient} opacity-0 group-hover:opacity-10 rounded-full blur-2xl transition-opacity duration-500`} />
+                </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
