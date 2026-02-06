@@ -15,7 +15,7 @@ const projects = [
     description:
       "Comprehensive reliability program implementation across 12 critical gas processing assets, including RCM analysis, vibration monitoring systems, and operator-driven reliability initiatives.",
     image:
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80",
+      "/images/projects/gas-plant.jpg",
     results: [
       "35% reduction in unplanned downtime",
       "$2.5M annual maintenance cost savings",
@@ -53,7 +53,7 @@ const projects = [
     description:
       "Complete redesign of maintenance strategy using RCM principles for 500+ rotating equipment assets, including criticality analysis and spare parts optimization.",
     image:
-      "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?auto=format&fit=crop&w=1200&q=80",
+      "/images/projects/refinery.jpg",
     results: [
       "50% reduction in repeat failures",
       "60% improvement in MTBF",
@@ -72,7 +72,7 @@ const projects = [
     description:
       "Comprehensive asset integrity management program for Steam-Assisted Gravity Drainage facility including corrosion monitoring, fitness-for-service assessments, and repair strategies.",
     image:
-      "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?auto=format&fit=crop&w=1200&q=80",
+      "/images/projects/sagd-facility.jpg",
     results: [
       "100% regulatory inspection compliance",
       "25% extension of equipment life",

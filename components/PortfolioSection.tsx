@@ -15,7 +15,7 @@ const projects = [
     description:
       "Implemented comprehensive reliability program reducing unplanned downtime by 35% across 12 critical assets.",
     image:
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80",
+      "/images/projects/gas-plant.jpg",
     results: [
       { label: "Downtime Reduction", value: "35%" },
       { label: "Annual Savings", value: "$2.5M" },
@@ -47,7 +47,7 @@ const projects = [
     description:
       "Redesigned maintenance strategy using RCM principles for 500+ rotating equipment assets.",
     image:
-      "https://images.unsplash.com/photo-1590959651373-a3db0f38a961?auto=format&fit=crop&w=1200&q=80",
+      "/images/projects/refinery.jpg",
     results: [
       { label: "Repeat Failures", value: "-50%" },
       { label: "MTBF Improvement", value: "+60%" },
