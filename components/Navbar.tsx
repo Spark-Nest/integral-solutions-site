@@ -1,138 +1,153 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Industries", href: "/industries" },
   { label: "Projects", href: "/projects" },
   { label: "Blog", href: "/blog" },
-  { label: "Careers", href: "/careers" },
-  { label: "Contact", href: "/contact" },
+  { label: "About", href: "/about" },
 ];
-
-function ModeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  const checked = mounted ? resolvedTheme === "dark" : false;
-
-  return (
-    <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs font-medium uppercase tracking-wide text-white/70 dark:border-white/5 dark:bg-black/20">
-      <span>Light</span>
-      <Switch
-        aria-label="Toggle theme"
-        checked={checked}
-        onCheckedChange={(state) => setTheme(state ? "dark" : "light")}
-      />
-      <span>Dark</span>
-    </div>
-  );
-}
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border border-white/10 bg-white/5 shadow-[0_10px_40px_-30px_rgba(0,0,0,0.8)] backdrop-blur-xl dark:border-white/5 dark:bg-black/10">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="flex items-center gap-4"
-        >
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-2xl font-semibold text-accent dark:border-white/10 dark:bg-white/5">
-            ∫
-          </div>
-          <div className="leading-tight">
-            <p className="text-base font-semibold text-white">
-              Integral Solutions Inc.
-            </p>
-            <p className="text-sm text-white/70">
-              Asset Management & Engineering Consulting
-            </p>
-          </div>
-        </motion.div>
-
-        <nav className="hidden items-center gap-8 text-sm font-medium uppercase tracking-wide text-white/80 md:flex">
-          {navLinks.map(({ label, href }) => (
-            <Link
-              key={label}
-              href={href}
-              className="relative pb-1 transition-colors hover:text-white"
+    <>
+      {/* Top bar */}
+      <div className="bg-[#0a0f1e] border-b border-white/5">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex items-center justify-end gap-8 py-2.5 text-sm text-gray-400">
+            <a
+              href="mailto:info@integralsolutionsinc.ca"
+              className="hover:text-blue-400 transition"
             >
-              <span
-                className={cn(
-                  "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#38bdf8] after:transition-transform after:duration-200 hover:after:scale-x-100",
-                )}
-              >
-                {label}
-              </span>
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <div className="hidden md:block">
-            <ModeToggle />
+              info@integralsolutionsinc.ca
+            </a>
+            <a
+              href="tel:+14034023670"
+              className="hover:text-blue-400 transition"
+            >
+              +1 (403) 402-3670
+            </a>
           </div>
-          <button
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:border-[#38bdf8]/50 hover:text-[#38bdf8] dark:border-white/5 dark:bg-black/30 md:hidden"
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.nav
-            key="mobile-menu"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden"
-          >
-            <div className="w-full border-t border-white/10 bg-black/60 px-6 py-4 backdrop-blur-xl dark:border-white/5">
-              <div className="flex flex-col gap-3 text-sm font-semibold uppercase tracking-wide text-white/80">
+      {/* Main navbar */}
+      <header
+        className={cn(
+          "sticky top-0 z-50 border-b transition-all duration-300",
+          scrolled
+            ? "bg-[#0b1120]/98 backdrop-blur-xl border-white/10 shadow-lg shadow-black/20"
+            : "bg-[#0b1120]/95 backdrop-blur-md border-white/5"
+        )}
+      >
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex items-center justify-between py-4">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-800 text-white text-xl font-bold shadow-lg shadow-blue-900/30">
+                ∫
+              </div>
+              <div>
+                <p
+                  className="text-lg font-semibold text-white"
+                  style={{ fontFamily: "var(--font-montserrat)" }}
+                >
+                  Integral Solutions
+                </p>
+                <p className="text-[11px] text-gray-500 tracking-[0.15em] uppercase">
+                  Engineering &middot; Reliability &middot; Integrity
+                </p>
+              </div>
+            </Link>
+
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-8 lg:flex">
+              {navLinks.map(({ label, href }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  className="text-[15px] font-medium text-gray-300 transition hover:text-white"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+
+            {/* Contact button & mobile menu */}
+            <div className="flex items-center gap-4">
+              <Link
+                href="/contact"
+                className="hidden lg:inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 shadow-md shadow-blue-900/30"
+              >
+                Contact Us
+              </Link>
+              <button
+                className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 lg:hidden"
+                onClick={() => setOpen((prev) => !prev)}
+                aria-label="Toggle menu"
+              >
+                {open ? (
+                  <span className="text-xl text-white leading-none">&times;</span>
+                ) : (
+                  <>
+                    <span className="block w-5 h-[2px] bg-white rounded-full" />
+                    <span className="block w-5 h-[2px] bg-white rounded-full" />
+                    <span className="block w-3.5 h-[2px] bg-white rounded-full" />
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {open && (
+            <motion.nav
+              key="mobile-menu"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="lg:hidden border-t border-white/5 bg-[#0b1120]"
+            >
+              <div className="px-6 py-4 space-y-1">
                 {navLinks.map(({ label, href }) => (
                   <Link
                     key={label}
                     href={href}
-                    className="relative rounded-lg px-2 py-2 transition hover:text-white"
+                    className="block py-3 text-[15px] font-medium text-gray-300 hover:text-white border-b border-white/5 last:border-0"
                     onClick={() => setOpen(false)}
                   >
-                    <span
-                      className={cn(
-                        "after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-[#38bdf8] after:transition-transform after:duration-200 hover:after:scale-x-100",
-                      )}
-                    >
-                      {label}
-                    </span>
+                    {label}
                   </Link>
                 ))}
+                <Link
+                  href="/contact"
+                  className="block py-3 text-[15px] font-semibold text-blue-400"
+                  onClick={() => setOpen(false)}
+                >
+                  Contact Us
+                </Link>
               </div>
-              <div className="mt-4">
-                <ModeToggle />
-              </div>
-            </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
-    </header>
+            </motion.nav>
+          )}
+        </AnimatePresence>
+      </header>
+    </>
   );
 }

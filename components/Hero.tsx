@@ -2,86 +2,156 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowDown, ArrowUp, TrendingUp } from "lucide-react";
+
+const painPoints = [
+  "Critical equipment keeps failing",
+  "Integrity risk feels too high",
+  "Maintenance cost is up, reliability is not",
+];
+
+const industries = [
+  "Gas Plants & Compression",
+  "Oil & Gas Facilities",
+  "Petrochemical & Process Plants",
+  "Power & Industrial Sites",
+];
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#050816] via-[#060b1d] to-[#050816]">
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),transparent_45%)]" />
+    <section className="relative min-h-[calc(100vh-120px)] bg-[#0a1628] overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0d1d35] to-[#0a1628]" />
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cyan-500/5 to-transparent" />
       </div>
-      <div className="relative mx-auto max-w-7xl px-6 py-20">
-        <div className="relative isolate min-h-[85vh] overflow-hidden rounded-3xl border border-white/10 bg-white/5 px-8 py-12 shadow-2xl backdrop-blur-xl before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_1px_1px,_rgba(56,189,248,0.08)_1px,_transparent_0)] before:bg-[length:24px_24px] before:opacity-25 dark:bg-white/5">
-          <div className="grid items-center gap-12 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="space-y-6"
-            >
-              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-200 backdrop-blur">
-                Precision-Engineered Outcomes
-              </div>
-              <h1 className="text-4xl font-bold leading-tight text-white md:text-5xl">
-                Engineering Reliability. Operational Excellence.
-              </h1>
-              <p className="max-w-xl text-lg text-gray-300">
-                Integral Solutions Inc. delivers asset management, plant reliability,
-                fixed equipment integrity, and engineering consulting for industrial
-                facilities across North America.
-              </p>
 
-              <div className="flex flex-wrap items-center gap-4">
-                <Link
-                  href="#"
-                  className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-300 px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:shadow-cyan-500/40"
-                >
-                  <span className="absolute inset-[-150%] translate-x-[-30%] translate-y-[-30%] bg-white/30 blur-3xl transition duration-500 group-hover:translate-x-[10%]" />
-                  <span className="relative">Explore Services</span>
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex items-center justify-center rounded-full border border-cyan-300/50 px-6 py-3 text-sm font-semibold text-cyan-200 transition hover:border-cyan-200 hover:text-white"
-                >
-                  Request Consultation
-                </Link>
-              </div>
-            </motion.div>
+      <div className="relative mx-auto max-w-7xl px-6 py-16 lg:py-24">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Left column */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-8"
+          >
+            {/* Tagline */}
+            <p className="text-sm font-semibold tracking-[0.2em] text-cyan-400 uppercase">
+              Engineering • Reliability • Asset Integrity
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-            >
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative rounded-2xl border border-cyan-500/30 bg-white/5 p-6 shadow-2xl backdrop-blur-xl dark:bg-white/10"
+            {/* Main headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              When critical assets fail, we help you make sure it doesn&apos;t happen twice.
+            </h1>
+
+            {/* Description */}
+            <p className="text-lg text-gray-400 max-w-xl leading-relaxed">
+              Integral Solutions Inc. works with gas plants, compressor stations, 
+              refineries and industrial facilities to cut repeat failures, stabilize 
+              production, and bring asset integrity under control—using structured 
+              RCFA, data-driven maintenance, and practical engineering judgement.
+            </p>
+
+            {/* CTA buttons */}
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-full bg-cyan-500 px-8 py-4 text-base font-semibold text-slate-900 transition hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25"
               >
-                <div className="absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.08),transparent_50%)]" />
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-10"
-                  style={{
-                    backgroundSize: "32px 32px",
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(56, 189, 248, 0.06) 1px, transparent 1px)",
-                  }}
-                />
-                <div className="relative space-y-4">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
-                    Reliability • Integrity • Compliance
+                Book a Discovery Call
+              </Link>
+              <Link
+                href="/results"
+                className="inline-flex items-center justify-center rounded-full border border-white/20 px-8 py-4 text-base font-semibold text-white transition hover:border-white/40 hover:bg-white/5"
+              >
+                See Typical Results
+              </Link>
+            </div>
+
+            {/* Pain points */}
+            <div className="pt-4">
+              <p className="text-xs font-semibold tracking-[0.15em] text-gray-500 uppercase mb-4">
+                We&apos;re called when:
+              </p>
+              <div className="flex flex-wrap gap-3">
+                {painPoints.map((point) => (
+                  <span
+                    key={point}
+                    className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-gray-300"
+                  >
+                    {point}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right column - Impact card */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:pl-8"
+          >
+            <div className="relative">
+              {/* Impact card */}
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-[#132038] to-[#0d1a2d] p-8 shadow-2xl">
+                <h3 className="text-xl font-semibold text-white mb-6">
+                  Field-Proven Impact*
+                </h3>
+
+                <div className="space-y-5">
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500/20">
+                      <ArrowDown className="h-4 w-4 text-cyan-400" />
+                    </div>
+                    <p className="text-gray-300">
+                      <span className="font-bold text-cyan-400">40-60%</span>{" "}
+                      repeat failures on targeted bad actors
+                    </p>
                   </div>
-                  <p className="text-lg font-semibold text-white">
-                    Blueprinting resilient operations.
-                  </p>
-                  <p className="text-sm leading-relaxed text-cyan-50/80">
-                    We engineer reliability programs, integrity assessments, and
-                    asset strategies that keep industrial facilities operating
-                    safely, efficiently, and in full compliance.
-                  </p>
+
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500/20">
+                      <ArrowDown className="h-4 w-4 text-cyan-400" />
+                    </div>
+                    <p className="text-gray-300">
+                      <span className="font-bold text-cyan-400">20-30%</span>{" "}
+                      unplanned downtime on critical assets
+                    </p>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <div className="mt-1 flex h-6 w-6 items-center justify-center rounded-full bg-cyan-500/20">
+                      <TrendingUp className="h-4 w-4 text-cyan-400" />
+                    </div>
+                    <p className="text-gray-300">
+                      <span className="font-bold text-cyan-400">Integrity confidence</span>{" "}
+                      through structured programs
+                    </p>
+                  </div>
                 </div>
-              </motion.div>
-            </motion.div>
-          </div>
+
+                <p className="mt-6 text-xs text-gray-500 leading-relaxed">
+                  *Representative outcomes where clients fully implemented recommended 
+                  reliability and integrity actions.
+                </p>
+              </div>
+
+              {/* Industry tags */}
+              <div className="mt-6 flex flex-wrap gap-3">
+                {industries.map((industry) => (
+                  <span
+                    key={industry}
+                    className="inline-flex items-center rounded-full border border-dashed border-white/20 px-4 py-2 text-sm text-gray-400"
+                  >
+                    {industry}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

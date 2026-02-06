@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -17,28 +17,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ToastProvider, useToast } from "@/components/ui/use-toast";
-
-type SectionProps = {
-  title?: string;
-  children: ReactNode;
-  delay?: number;
-};
-
-function Section({ title, children, delay = 0 }: SectionProps) {
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay }}
-      className="mx-auto max-w-7xl px-6 py-8 md:py-12"
-    >
-      <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl backdrop-blur">
-        {title ? <h2 className="text-3xl font-bold text-cyan-400">{title}</h2> : null}
-        <div className={title ? "mt-6" : ""}>{children}</div>
-      </div>
-    </motion.section>
-  );
-}
 
 const formSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
@@ -76,38 +54,71 @@ function ContactContent() {
       toast({ title: "Message sent successfully!" });
       form.reset();
     } else {
-      toast({ title: "Something went wrong", description: "Please try again." });
+      toast({
+        title: "Something went wrong",
+        description: "Please try again.",
+      });
     }
   };
 
   return (
-    <div className="flex flex-col bg-gradient-to-b from-[#050816] via-[#060b1d] to-[#050816] pb-20 pt-12">
-      <motion.section
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto max-w-7xl px-6 py-16"
-      >
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-12 text-center shadow-2xl backdrop-blur">
-          <div className="absolute inset-0 opacity-25">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_1px_1px,_rgba(56,189,248,0.08)_1px,_transparent_0)] bg-[length:22px_22px]" />
-          </div>
-          <div className="relative space-y-4">
-            <h1 className="text-4xl font-bold text-white md:text-5xl">Get in Touch</h1>
-            <p className="text-lg text-gray-300">
-              Our engineering team is ready to support your asset management, reliability, and integrity initiatives.
-            </p>
-          </div>
+    <div className="min-h-screen bg-[#0b1120]">
+      {/* Hero */}
+      <section className="relative py-24 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80"
+            alt="Office"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b1120] via-[#0b1120]/90 to-[#0b1120]/70" />
         </div>
-      </motion.section>
+        <div className="relative mx-auto max-w-7xl px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-3xl"
+          >
+            <span className="inline-block text-sm font-semibold tracking-[0.2em] text-blue-400 uppercase mb-4">
+              Contact
+            </span>
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6"
+              style={{ fontFamily: "var(--font-montserrat)" }}
+            >
+              Get in Touch
+            </h1>
+            <p className="text-xl text-gray-300 leading-relaxed">
+              Our engineering team is ready to support your asset management,
+              reliability, and integrity initiatives.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-4 lg:flex-row">
-        <Section delay={0.05}>
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl">
+      {/* Form & Info */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Form */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+            >
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+                <h2
+                  className="text-2xl font-bold text-white mb-6"
+                  style={{ fontFamily: "var(--font-montserrat)" }}
+                >
+                  Send Us a Message
+                </h2>
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-5"
+                  >
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                       <FormField
                         control={form.control}
@@ -145,7 +156,11 @@ function ContactContent() {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input placeholder="you@example.com" type="email" {...field} />
+                              <Input
+                                placeholder="you@example.com"
+                                type="email"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -158,7 +173,11 @@ function ContactContent() {
                           <FormItem>
                             <FormLabel>Phone (optional)</FormLabel>
                             <FormControl>
-                              <Input placeholder="+1 (555) 123-4567" type="tel" {...field} />
+                              <Input
+                                placeholder="+1 (555) 123-4567"
+                                type="tel"
+                                {...field}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -199,53 +218,102 @@ function ContactContent() {
                     />
 
                     <div className="flex justify-end">
-                      <Button type="submit" className="px-6 py-3">
-                        Submit
+                      <Button
+                        type="submit"
+                        className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold"
+                      >
+                        Send Message
                       </Button>
                     </div>
                   </form>
                 </Form>
               </div>
-            </div>
+            </motion.div>
 
+            {/* Contact Information */}
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="rounded-2xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur-xl"
+              transition={{ delay: 0.2 }}
+              className="space-y-8"
             >
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-white">Contact Information</h3>
-                <p className="text-gray-300">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+                <h2
+                  className="text-2xl font-bold text-white mb-6"
+                  style={{ fontFamily: "var(--font-montserrat)" }}
+                >
+                  Contact Information
+                </h2>
+                <p className="text-gray-400 mb-8">
                   Available for consultations across North America.
                 </p>
-                <div className="space-y-3 text-sm text-gray-200">
+                <div className="space-y-6 text-sm">
                   <div>
-                    <p className="font-semibold text-white">Integral Solutions Inc.</p>
-                    <p>Calgary Office</p>
-                    <p>Suite 300, Calgary, AB</p>
+                    <p className="font-semibold text-white mb-1">
+                      Integral Solutions Inc.
+                    </p>
+                    <p className="text-gray-400">Calgary Office</p>
+                    <p className="text-gray-400">Calgary, AB, Canada</p>
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Houston Office</p>
-                    <p>Suite 1200, Houston, TX</p>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-white">Email</p>
-                    <a className="text-cyan-200 hover:text-white" href="mailto:info@integralsolutions.com">
-                      info@integralsolutions.com
+                    <p className="font-semibold text-white mb-1">Email</p>
+                    <a
+                      className="text-blue-400 hover:text-blue-300 transition-colors"
+                      href="mailto:info@integralsolutionsinc.ca"
+                    >
+                      info@integralsolutionsinc.ca
                     </a>
                   </div>
                   <div>
-                    <p className="font-semibold text-white">Phone</p>
-                    <p>Calgary: +1 (403) 555-1234</p>
-                    <p>Houston: +1 (713) 555-5678</p>
+                    <p className="font-semibold text-white mb-1">Phone</p>
+                    <a
+                      className="text-blue-400 hover:text-blue-300 transition-colors"
+                      href="tel:+14034023670"
+                    >
+                      +1 (403) 402-3670
+                    </a>
                   </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+                <h3
+                  className="text-lg font-bold text-white mb-4"
+                  style={{ fontFamily: "var(--font-montserrat)" }}
+                >
+                  What to Expect
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    {
+                      step: "1",
+                      text: "We respond within 1 business day",
+                    },
+                    {
+                      step: "2",
+                      text: "Schedule a free discovery call",
+                    },
+                    {
+                      step: "3",
+                      text: "Receive a tailored proposal",
+                    },
+                  ].map((item) => (
+                    <div key={item.step} className="flex items-center gap-4">
+                      <span
+                        className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-bold shrink-0"
+                        style={{ fontFamily: "var(--font-montserrat)" }}
+                      >
+                        {item.step}
+                      </span>
+                      <p className="text-gray-300">{item.text}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </motion.div>
           </div>
-        </Section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
@@ -257,4 +325,3 @@ export default function ContactPageClient() {
     </ToastProvider>
   );
 }
-

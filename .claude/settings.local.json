@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.integralsolutionsinc.ca)",
+      "Bash(npm run build:*)"
+    ]
+  }
+}

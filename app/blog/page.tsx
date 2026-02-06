@@ -1,12 +1,11 @@
+import { Metadata } from "next";
 import BlogPageClient from "./BlogPageClient";
 
-export const metadata = {
-  title: "Insights & Articles",
-  description:
-    "Engineering insights from Integral Solutions Inc. covering reliability, maintenance optimization, integrity management, and asset performance best practices.",
+export const metadata: Metadata = {
+  title: "Blog & Insights | Integral Solutions Inc.",
+  description: "Expert insights on plant reliability, fixed equipment integrity, maintenance management, and engineering consulting for industrial facilities.",
 };
 
 export default function BlogPage() {
   return <BlogPageClient />;
 }
-

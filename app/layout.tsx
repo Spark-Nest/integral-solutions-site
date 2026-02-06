@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Montserrat, Inter } from "next/font/google";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import LenisProvider from "@/components/lenis-provider";
@@ -8,21 +8,23 @@ import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
 import "../styles/globals.css";
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://integralsolutionsinc.ca"),
   title: {
-    default: "Integral Solutions Inc. | Engineering • Reliability • Integrity",
+    default: "Integral Solutions Inc. | Engineering, Reliability & Integrity",
     template: "%s | Integral Solutions Inc.",
   },
   description:
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: "https://integralsolutionsinc.ca",
-    title: "Integral Solutions Inc. | Engineering • Reliability • Integrity",
+    title: "Integral Solutions Inc. | Engineering, Reliability & Integrity",
     description:
       "Supporting industrial facilities across North America with engineering expertise in reliability, integrity, maintenance, and asset management.",
     siteName: "Integral Solutions Inc.",
@@ -75,10 +77,11 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background text-white antialiased",
+          "min-h-screen bg-[#0b1120] text-white antialiased",
+          montserrat.variable,
           inter.variable,
-          geistMono.variable,
         )}
+        style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}
       >
         <ThemeProvider
           attribute="class"
@@ -90,9 +93,7 @@ export default function RootLayout({
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">
-              <div className="container mx-auto max-w-6xl px-6 py-12 md:py-16">
-                {children}
-              </div>
+              {children}
             </main>
             <Footer />
           </div>
