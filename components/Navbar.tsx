@@ -25,8 +25,8 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top bar */}
-      <div className="bg-gradient-to-r from-[#05101f] via-[#061326] to-[#05101f] border-b border-cyan-500/10">
+      {/* Top bar – hidden on mobile to prevent horizontal overflow on small screens */}
+      <div className="hidden md:block bg-linear-to-r from-[#05101f] via-[#061326] to-[#05101f] border-b border-cyan-500/10">
         <div className="mx-auto max-w-7xl px-6">
           <div className="flex items-center justify-end gap-8 py-2.5 text-sm text-gray-400">
             <a
@@ -51,30 +51,27 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main navbar */}
+      {/* Main navbar – pt-safe offsets content below the device notch/Dynamic Island */}
       <header
         className={cn(
-          "sticky top-0 z-50 border-b transition-all duration-300",
+          "sticky top-0 z-50 border-b transition-all duration-300 pt-safe",
           scrolled
             ? "bg-[#0b1120]/98 backdrop-blur-xl border-white/10 shadow-lg shadow-black/20"
             : "bg-[#0b1120]/95 backdrop-blur-md border-white/5"
         )}
       >
-        <div className="mx-auto max-w-7xl px-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-800 text-white text-xl font-bold shadow-lg shadow-blue-900/30">
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-blue-600 to-blue-800 text-white text-xl font-bold shadow-lg shadow-blue-900/30">
                 ∫
               </div>
-              <div>
-                <p
-                  className="text-lg font-semibold text-white"
-                  style={{ fontFamily: "var(--font-montserrat)" }}
-                >
+              <div className="min-w-0">
+                <p className="font-heading text-base sm:text-lg font-semibold text-white leading-tight truncate">
                   Integral Solutions
                 </p>
-                <p className="text-[11px] text-gray-500 tracking-[0.15em] uppercase">
+                <p className="logo-subtitle text-gray-500 uppercase">
                   Engineering &middot; Reliability &middot; Integrity
                 </p>
               </div>
@@ -93,8 +90,8 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Contact button & mobile menu */}
-            <div className="flex items-center gap-4">
+            {/* Contact button & mobile menu toggle */}
+            <div className="flex items-center gap-4 shrink-0">
               <Link
                 href="/contact"
                 className="hidden lg:inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500 shadow-md shadow-blue-900/30"
@@ -102,6 +99,7 @@ export default function Navbar() {
                 Contact Us
               </Link>
               <button
+                type="button"
                 className="inline-flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/5 lg:hidden"
                 onClick={() => setOpen((prev) => !prev)}
                 aria-label="Toggle menu"
@@ -110,9 +108,9 @@ export default function Navbar() {
                   <span className="text-xl text-white leading-none">&times;</span>
                 ) : (
                   <>
-                    <span className="block w-5 h-[2px] bg-white rounded-full" />
-                    <span className="block w-5 h-[2px] bg-white rounded-full" />
-                    <span className="block w-3.5 h-[2px] bg-white rounded-full" />
+                    <span className="block w-5 h-0.5 bg-white rounded-full" />
+                    <span className="block w-5 h-0.5 bg-white rounded-full" />
+                    <span className="block w-3.5 h-0.5 bg-white rounded-full" />
                   </>
                 )}
               </button>
@@ -131,7 +129,7 @@ export default function Navbar() {
               transition={{ duration: 0.2 }}
               className="lg:hidden border-t border-white/5 bg-[#0b1120]"
             >
-              <div className="px-6 py-4 space-y-1">
+              <div className="px-4 sm:px-6 py-4 space-y-1">
                 {navLinks.map(({ label, href }) => (
                   <Link
                     key={label}

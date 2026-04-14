@@ -123,8 +123,39 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  /* Progressive enhancement: use small viewport height on mobile browsers
+     so content isn't clipped by the browser chrome. Falls back to 100vh. */
+  .min-h-svh {
+    min-height: 100vh;
+    min-height: 100svh;
+  }
+
+  /* Offset the sticky navbar below the device safe-area (notch / Dynamic Island) */
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Keep logo subtitle on one line, scale down on very small screens */
+  .logo-subtitle {
+    font-size: clamp(9px, 2.2vw, 11px);
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+  }
+
+  /* FloatingCTA: keep above iOS home indicator bar */
+  .floating-cta {
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
+    right: max(1.5rem, env(safe-area-inset-right, 1.5rem));
   }
 }
 

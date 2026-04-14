@@ -32,7 +32,7 @@ function AnimatedCounter({ value, delay }: { value: string; delay: number }) {
 
 export default function VideoHero() {
   return (
-    <section className="relative min-h-[100vh] bg-[#050d1a] overflow-hidden flex items-center">
+    <section className="relative min-h-svh bg-[#050d1a] overflow-hidden flex items-center">
       {/* ── Background Image ── */}
       <div className="absolute inset-0">
         <Image
@@ -74,7 +74,8 @@ export default function VideoHero() {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 mx-auto max-w-7xl px-8 lg:px-14 pt-24 pb-36 w-full">
+      {/* pt accounts for sticky navbar; pb-56 on mobile clears the taller 2-row stats bar */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-8 lg:px-14 pt-20 sm:pt-24 pb-56 sm:pb-44 md:pb-36 w-full">
         <div className="max-w-[900px]">
 
           {/* Badge */}
@@ -217,8 +218,8 @@ export default function VideoHero() {
         <div className="relative border-t border-white/6 bg-linear-to-r from-[#050d1a]/96 via-[#08152a]/92 to-[#050d1a]/85 backdrop-blur-2xl">
           {/* Blue accent on top edge */}
           <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-blue-500/35 to-transparent" />
-          <div className="mx-auto max-w-7xl px-8 lg:px-14 py-7">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-14 py-5 sm:py-7">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8">
               {stats.map((stat, i) => (
                 <motion.div
                   key={stat.label}

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
 import { Montserrat, Inter } from "next/font/google";
 import Footer from "@/components/Footer";
@@ -20,6 +20,13 @@ const inter = Inter({
   display: "swap",
   variable: "--font-inter",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  minimumScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://integralsolutionsinc.ca"),
@@ -77,7 +84,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-[#0b1120] text-white antialiased",
+          "min-h-screen bg-[#0b1120] text-white antialiased overflow-x-hidden",
           montserrat.variable,
           inter.variable,
         )}

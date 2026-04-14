@@ -24,7 +24,7 @@ export default function FloatingCTA() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className="fixed bottom-6 right-6 z-50"
+          className="fixed floating-cta z-50"
         >
           <div className="relative rounded-xl border border-blue-500/30 bg-[#0b1120] p-5 shadow-2xl shadow-blue-900/20 max-w-xs">
             <button
