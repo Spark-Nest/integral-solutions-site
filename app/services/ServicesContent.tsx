@@ -220,6 +220,7 @@ export default function ServicesContent() {
                       src={service.image}
                       alt={service.title}
                       fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className="object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120]/60 to-transparent" />
