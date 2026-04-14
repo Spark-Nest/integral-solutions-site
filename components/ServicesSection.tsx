@@ -15,8 +15,7 @@ const services = [
       "Maintenance Optimization",
     ],
     href: "/services",
-    image:
-      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=800&q=80",
+    image: "/images/projects/naintenance_2.jpg",
   },
   {
     title: "Plant Reliability",
@@ -28,8 +27,7 @@ const services = [
       "Operator Driven Reliability",
     ],
     href: "/services",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    image: "/images/projects/plant_reliability.jpg",
   },
   {
     title: "Fixed Equipment Integrity",
@@ -41,8 +39,7 @@ const services = [
       "Fitness for Service",
     ],
     href: "/services",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
+    image: "/images/projects/fixed_equipment.jpg",
   },
   {
     title: "Engineering Consulting",
@@ -54,8 +51,7 @@ const services = [
       "Environmental Solutions",
     ],
     href: "/services",
-    image:
-      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80",
+    image: "/images/projects/eng_consulting.jpg",
   },
 ];
 

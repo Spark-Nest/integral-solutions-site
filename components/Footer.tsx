@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 
 const footerLinks = {
   services: [
@@ -30,17 +31,21 @@ export default function Footer() {
           <div className="space-y-8">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-800 text-white text-xl font-bold">
-                ∫
+              <div className="relative h-16 w-16 shrink-0">
+                <Image
+                  src="/images/projects/integral_logo.jpg"
+                  alt="Integral Solutions Logo"
+                  fill
+                  className="object-contain rounded-full"
+                />
               </div>
               <div>
-                <p
-                  className="text-lg font-semibold text-white"
+                <p className="text-xl font-extrabold tracking-tight leading-none bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
                   style={{ fontFamily: "var(--font-montserrat)" }}
                 >
                   Integral Solutions Inc.
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="mt-1 text-[10px] font-medium tracking-[0.22em] text-blue-400/75 uppercase">
                   Engineering &middot; Reliability &middot; Integrity
                 </p>
               </div>

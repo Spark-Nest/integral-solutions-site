@@ -119,7 +119,7 @@ export default function AboutContent() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1920&q=80"
+            src="/images/projects/plant_reliability.jpg"
             alt="Engineering team"
             fill
             className="object-cover"
@@ -279,7 +279,7 @@ export default function AboutContent() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
                 <Image
-                  src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80"
+                  src="/images/projects/our_story_2.jpg"
                   alt="Team collaboration"
                   fill
                   className="object-cover"

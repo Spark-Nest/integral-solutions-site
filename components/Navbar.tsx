@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -64,14 +65,19 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0">
-              <div className="flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-blue-600 to-blue-800 text-white text-xl font-bold shadow-lg shadow-blue-900/30">
-                ∫
+              <div className="relative h-14 w-14 sm:h-16 sm:w-16 shrink-0">
+                <Image
+                  src="/images/projects/integral_logo.jpg"
+                  alt="Integral Solutions Logo"
+                  fill
+                  className="object-contain rounded-full"
+                />
               </div>
               <div className="min-w-0">
-                <p className="font-heading text-base sm:text-lg font-semibold text-white leading-tight truncate">
+                <p className="font-heading text-lg sm:text-xl font-extrabold tracking-tight leading-none truncate bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Integral Solutions
                 </p>
-                <p className="logo-subtitle text-gray-500 uppercase">
+                <p className="mt-1 text-[9px] sm:text-[10px] font-medium tracking-[0.22em] text-blue-400/75 uppercase truncate">
                   Engineering &middot; Reliability &middot; Integrity
                 </p>
               </div>

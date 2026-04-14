@@ -90,8 +90,7 @@ const projects = [
     category: "Engineering Consulting",
     description:
       "Complete turnaround planning and execution support for major petrochemical facility, including scope development, resource planning, and critical path optimization.",
-    image:
-      "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/projects/petrochemical_plant.jpg",
     results: [
       "2 days under planned shutdown duration",
       "$500K cost savings vs. budget",
@@ -114,8 +113,7 @@ const projects = [
     category: "Plant Reliability",
     description:
       "Implementation of Reliability-Centered Maintenance program for gas-fired power generation facility including turbine maintenance optimization and control system upgrades.",
-    image:
-      "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80",
+    image: "/images/projects/power_plant.jpg",
     results: [
       "99.5% plant availability achieved",
       "20% reduction in forced outages",
@@ -170,7 +168,7 @@ export default function ProjectsPageClient() {
       <section className="relative py-24 lg:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1920&q=80"
+            src="/images/projects/projects_banner.jpg"
             alt="Industrial project"
             fill
             className="object-cover"
