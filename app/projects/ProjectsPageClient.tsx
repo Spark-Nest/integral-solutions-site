@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const projects = [
   {
@@ -162,6 +163,20 @@ const stats = [
 ];
 
 export default function ProjectsPageClient() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (!el) return;
+    // Wait for layout/animations to settle, then scroll with navbar offset
+    const timer = setTimeout(() => {
+      const offset = 100;
+      const top = el.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#0b1120]">
       {/* Hero */}
@@ -275,6 +290,7 @@ export default function ProjectsPageClient() {
             {projects.map((project, index) => (
               <motion.article
                 key={project.id}
+                id={`project-${project.id}`}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

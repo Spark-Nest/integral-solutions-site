@@ -95,7 +95,7 @@ export default function PortfolioSection() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              <Link href="/projects" className="group block">
+              <Link href={`/projects#project-${project.id}`} className="group block">
                 <div className="relative grid lg:grid-cols-2 gap-0 rounded-2xl border border-white/10 bg-white/[0.02] overflow-hidden transition-all duration-300 hover:border-blue-500/30">
                   {/* Image */}
                   <div className="relative h-72 lg:h-auto min-h-[320px] overflow-hidden">
